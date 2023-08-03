@@ -1,0 +1,66 @@
+Arguments: 
+  C:\Program Files\nodejs\node.exe C:\Users\mrdti\AppData\Roaming\npm\node_modules\yarn\bin\yarn.js add gatsby-plugin-prefetch-google-fonts
+
+PATH: 
+  C:\Users\mrdti\bin;C:\Program Files\Git\mingw64\bin;C:\Program Files\Git\usr\local\bin;C:\Program Files\Git\usr\bin;C:\Program Files\Git\usr\bin;C:\Program Files\Git\mingw64\bin;C:\Program Files\Git\usr\bin;C:\Users\mrdti\bin;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0;C:\Windows\System32\OpenSSH;C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common;C:\Program Files\NVIDIA Corporation\NVIDIA NvDLISR;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0;C:\WINDOWS\System32\OpenSSH;C:\Program Files\nodejs;C:\Program Files\Git\cmd;C:\Users\mrdti\AppData\Local\Microsoft\WindowsApps;C:\Users\mrdti\AppData\Local\Programs\Microsoft VS Code\bin;C:\Users\mrdti\AppData\Roaming\npm;C:\Users\mrdti\AppData\Local\GitHubDesktop\bin;C:\Program Files\Git\usr\bin\vendor_perl;C:\Program Files\Git\usr\bin\core_perl
+
+Yarn version: 
+  1.22.19
+
+Node version: 
+  18.16.0
+
+Platform: 
+  win32 x64
+
+Trace: 
+  Error: EPERM: operation not permitted, unlink 'C:\Users\mrdti\Calculadora\calculadora\node_modules\@parcel\fs-search\fs-search.win32-x64-msvc.node'
+
+npm manifest: 
+  {
+    "name": "calculadora",
+    "version": "1.0.0",
+    "private": true,
+    "description": "calculadora",
+    "author": "Lucas Mesquita",
+    "keywords": [
+      "gatsby"
+    ],
+    "scripts": {
+      "develop": "gatsby develop",
+      "start": "gatsby develop",
+      "build": "gatsby build",
+      "serve": "gatsby serve",
+      "clean": "gatsby clean",
+      "typecheck": "tsc --noEmit"
+    },
+    "dependencies": {
+      "autoprefixer": "^10.4.14",
+      "gatsby": "^5.11.0",
+      "gatsby-plugin-google-gtag": "^5.11.0",
+      "gatsby-plugin-image": "^3.11.0",
+      "gatsby-plugin-manifest": "^5.11.0",
+      "gatsby-plugin-nprogress": "^5.11.0",
+      "gatsby-plugin-postcss": "^6.11.0",
+      "gatsby-plugin-sharp": "^5.11.0",
+      "gatsby-plugin-sitemap": "^6.11.0",
+      "gatsby-source-filesystem": "^5.11.0",
+      "gatsby-transformer-sharp": "^5.11.0",
+      "postcss": "^8.4.27",
+      "react": "^18.2.0",
+      "react-dom": "^18.2.0",
+      "tailwindcss": "^3.3.3"
+    },
+    "devDependencies": {
+      "@types/node": "^20.3.3",
+      "@types/react": "^18.2.14",
+      "@types/react-dom": "^18.2.6",
+      "typescript": "^5.1.6"
+    }
+  }
+
+yarn manifest: 
+  No manifest
+
+Lockfile: 
+  No lockfile
