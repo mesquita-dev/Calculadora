@@ -14,6 +14,7 @@ const config: GatsbyConfig = {
     "gatsby-plugin-postcss",
     "gatsby-plugin-image",
     "gatsby-plugin-sitemap",
+    "gatsby-transformer-remark",
     {
       resolve: "gatsby-plugin-manifest",
       options: {
@@ -29,6 +30,13 @@ const config: GatsbyConfig = {
         path: "./src/images/",
       },
       __key: "images",
+    },
+    {
+      resolve: "gatsby-source-filesystem",
+      options: {
+        name: "advantages",
+        path: `${__dirname}/src/advantages/`,
+      },
     },
     {
       resolve: `gatsby-plugin-nprogress`,
