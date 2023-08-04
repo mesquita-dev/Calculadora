@@ -2,6 +2,7 @@ import * as React from "react";
 import { graphql, type HeadFC, type PageProps } from "gatsby";
 import { StaticImage, GatsbyImage, getImage } from "gatsby-plugin-image";
 import Card from "../components/Card";
+import ContactForm from "../components/ContactForm";
 
 const IndexPage: React.FC<PageProps> = ({ data }) => {
   const advantage = data.allMarkdownRemark.nodes;
@@ -20,7 +21,7 @@ const IndexPage: React.FC<PageProps> = ({ data }) => {
         </figure>
       </header>
 
-      <main className="flex justify-between max-w-[1240px] mx-auto mb-6">
+      <main className="flex justify-between max-w-[1240px] mx-auto mb-9">
         <figure>
           <StaticImage
             src="../images/img-calculadora.svg"
@@ -53,7 +54,7 @@ const IndexPage: React.FC<PageProps> = ({ data }) => {
         </div>
       </main>
 
-      <section className="bg-neutral-100 w-full max-w-full">
+      <section className="bg-neutral-100 w-full max-w-full mb-9">
         <div className="max-w-[1240px] mx-auto py-8">
           <h2 className="text-center font-semibold text-3xl text-neutral-950">
             Como funciona a calculadora?
@@ -70,6 +71,21 @@ const IndexPage: React.FC<PageProps> = ({ data }) => {
                 </div>
               ))}
             </div>
+        </div>
+      </section>
+
+      <section className="grid grid-cols-2 h-96">
+        <figure className="w-full block">
+        <StaticImage
+            src="../images/teste.jpg"
+            alt="Imagem de duas pessoas conversando"
+            layout="constrained"
+          />
+        </figure>
+
+        <div className="bg-[#4510a3] p-10">
+          <h3 className="text-white text-4xl font-bold mb-4">Entre em contato com nossos especialistas</h3>
+          <ContactForm />
         </div>
       </section>
     </div>
