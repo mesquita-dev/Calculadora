@@ -52,34 +52,36 @@ const IndexPage: React.FC<PageProps> = ({ data }) => {
             Como funciona a calculadora?
           </h2>
 
-            <div className="flex justify-between mt-6">
-              {advantage.map((item: any) => (
-                <div key={item.id} className="max-w-xs bg-white p-7 rounded-lg text-center drop-shadow-md">
-                  <div className="bg-[#4510a3] p-3 rounded-md">
-                    <h3 className="text-lg font-bold text-white uppercase">{item.frontmatter.title}</h3>
-                  </div>
-
-                  <p className="mt-3 text-neutral-800">{item.frontmatter.description}</p>
+          <div className="flex justify-between mt-6">
+            {advantage.map((item: any) => (
+              <div key={item.id} className="max-w-xs bg-white p-7 rounded-lg text-center drop-shadow-md">
+                <div className="bg-[#4510a3] p-3 rounded-md">
+                  <h3 className="text-lg font-bold text-white uppercase">{item.frontmatter.title}</h3>
                 </div>
-              ))}
-            </div>
+
+                <p className="mt-3 text-neutral-800">{item.frontmatter.description}</p>
+              </div>
+            ))}
+          </div>
         </div>
       </section>
 
-      <section className="grid grid-cols-2">
+      <section className="grid grid-cols-2 max-w-[1440px] mx-auto">
         <figure className="w-full block">
-        <StaticImage
+          <StaticImage
             src="../images/teste.jpg"
             alt="Imagem de duas pessoas conversando"
             layout="constrained"
+            className="h-full"  // Definindo a altura da imagem como a altura total da seção
           />
         </figure>
 
-        <div className="bg-[#4510a3] p-10">
+        <div className="bg-[#4510a3] p-10 flex flex-col justify-center">
           <h3 className="text-white text-4xl font-bold mb-4">Entre em contato com nossos especialistas</h3>
           <ContactForm />
         </div>
       </section>
+
 
       <Footer />
     </div>

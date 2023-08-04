@@ -17,8 +17,8 @@ const Footer = () => {
 
         <div className="max-w-[1240px] mx-auto">
           <div className='flex justify-center gap-6'>
-            <a href="https://grantoseguros.com">Site</a>
-            <a href="https://grantoseguros.com/blog">Blog</a>
+            <a href="https://grantoseguros.com" target='_blank'>Site</a>
+            <a href="https://grantoseguros.com/blog" target='_blank'>Blog</a>
           </div>
           <span>Copyright ©2023 GRANTO | Todos os Direitos Reservados</span>
         </div>
