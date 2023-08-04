@@ -1,25 +1,17 @@
 import * as React from "react";
 import { graphql, type HeadFC, type PageProps } from "gatsby";
-import { StaticImage, GatsbyImage, getImage } from "gatsby-plugin-image";
+import { StaticImage } from "gatsby-plugin-image";
+import Header from '../components/Header'
 import Card from "../components/Card";
 import ContactForm from "../components/ContactForm";
+import Footer from '../components/Footer'
 
 const IndexPage: React.FC<PageProps> = ({ data }) => {
   const advantage = data.allMarkdownRemark.nodes;
 
   return (
     <div>
-      <header className="mb-16 bg-neutral-100 w-full max-w-full">
-        <figure className="max-w-[1240px] mx-auto">
-          <StaticImage
-            src="../images/logo.svg"
-            alt="Logo da Granto Seguros"
-            width={96}
-            height={96}
-            layout="fixed"
-          />
-        </figure>
-      </header>
+      <Header />
 
       <main className="flex justify-between max-w-[1240px] mx-auto mb-9">
         <figure>
@@ -74,7 +66,7 @@ const IndexPage: React.FC<PageProps> = ({ data }) => {
         </div>
       </section>
 
-      <section className="grid grid-cols-2 h-96">
+      <section className="grid grid-cols-2">
         <figure className="w-full block">
         <StaticImage
             src="../images/teste.jpg"
@@ -88,6 +80,8 @@ const IndexPage: React.FC<PageProps> = ({ data }) => {
           <ContactForm />
         </div>
       </section>
+
+      <Footer />
     </div>
   );
 };
