@@ -7,7 +7,7 @@ const Card = ({ text, typeInput, placeholder, btnText }) => {
 
       <div className='flex gap-6 justify-center align-center'>
         <input type={typeInput} placeholder={placeholder} className='p-3 rounded-lg outline-none border-none' />
-        <button className="bg-[#0CD2AB] px-3 rounded-lg text-white font-semibold">{btnText}</button>
+        <button className="bg-teal-500 px-3 rounded-lg text-black font-semibold">{btnText}</button>
         </div>
     </div>
   )

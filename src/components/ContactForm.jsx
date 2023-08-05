@@ -60,7 +60,7 @@ const ContactForm = () => {
         </div>
 
 
-        <button className='p-4 bg-teal-500 mt-2 w-52 rounded-lg text-white font-bold uppercase border-none outline-none'>Solicitar contato</button>
+        <button className='p-4 bg-teal-500 mt-2 w-52 rounded-lg text-black font-bold uppercase border-none outline-none'>Solicitar contato</button>
       </form>
       <DevTool control={control} />
     </div>
