@@ -20,6 +20,7 @@ const Duration = ({ onSubmit }) => {
           placeholder="Vigência em dias"
           value={vigencia}
           onChange={(event) => setVigencia(event.target.value)}
+          autoComplete="off"
         />
         <button
           className="rounded-lg bg-teal-500 px-3 font-bold uppercase text-black"

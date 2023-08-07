@@ -33,6 +33,7 @@ const MainContactForm = ({ onSubmit }) => {
             type="text"
             id="name"
             placeholder="Ex: João Silva"
+            autoComplete="off"
             className="mt-2 rounded-md border-none bg-white/10 p-3 text-white outline-none"
             {...register('name', {
               required: {
@@ -55,6 +56,7 @@ const MainContactForm = ({ onSubmit }) => {
             type="email"
             name="email"
             id="email"
+            autoComplete="off"
             placeholder="Ex: seuemail@gmail.com"
             className="mt-2 rounded-md border-none bg-white/10 p-3 text-white outline-none"
             {...register('email', {
@@ -81,6 +83,7 @@ const MainContactForm = ({ onSubmit }) => {
             type="tel"
             name="phone"
             id="phone"
+            autoComplete="off"
             placeholder="Ex: (99) 99999-9999"
             className="mt-2 rounded-md border-none bg-white/10 p-3 text-white outline-none"
             {...register('phone', {

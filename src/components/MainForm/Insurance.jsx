@@ -32,6 +32,7 @@ const Insurance = ({ onSubmit }) => {
           placeholder="Importância Segurada"
           value={formatCurrency(importanciaSegurada)}
           onChange={(event) => setImportanciaSegurada(event.target.value)}
+          autoComplete="off"
           className="rounded-lg border-none p-3 outline-none"
         />
         <button
