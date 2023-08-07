@@ -1,20 +1,85 @@
-import * as React from "react";
-import { graphql, type HeadFC, type PageProps } from "gatsby";
-import { StaticImage } from "gatsby-plugin-image";
+import React, { useState } from 'react'
+import { graphql, type HeadFC, type PageProps } from 'gatsby'
+import { StaticImage } from 'gatsby-plugin-image'
 import Header from '../components/Header'
-import Card from "../components/Card";
-import ContactForm from "../components/ContactForm";
+
+import Insurance from '../components/MainForm/Insurance'
+import Duration from '../components/MainForm/Duration'
+import CompanySize from '../components/MainForm/CompanySize'
+import MainContactForm from '../components/MainForm/MainContactForm'
+import Result from '../components/MainForm/Result'
+
+import ContactForm from '../components/ContactForm'
 import Footer from '../components/Footer'
 
 const IndexPage: React.FC<PageProps> = ({ data }) => {
-  const advantage = data.allMarkdownRemark.nodes;
+  const advantage = data.allMarkdownRemark.nodes
+
+  const [currentStep, setCurrentStep] = useState(1)
+  const [insuranceInfo, setInsuranceInfo] = useState({})
+  const [duration, setDuration] = useState('')
+  const [companySize, setCompanySize] = useState('')
+  const [mainContactInfo, setMainContactInfo] = useState({})
+  const [result, setResult] = useState('')
+
+  const handleNextStep = (stepData) => {
+    setFormData(stepData)
+    setCurrentStep(currentStep + 1)
+  }
+
+  const setFormData = (stepData) => {
+    switch (currentStep) {
+      case 1:
+        setInsuranceInfo(stepData)
+        break
+      case 2:
+        setDuration(stepData)
+        break
+      case 3:
+        setCompanySize(stepData)
+        break
+      case 4:
+        setMainContactInfo(stepData)
+        handleCalculateResult(stepData)
+        break
+      default:
+        break
+    }
+  }
+
+  const handleCalculateResult = (mainContactData) => {
+    const sizeValues = {
+      MEI: { size: 1, minValue: 290 },
+      ME: { size: 0.8, minValue: 250 },
+      Média: { size: 0.5, minValue: 190 },
+      Grande: { size: 0.4, minValue: 170 },
+    }
+
+    const { size, minValue } = sizeValues[companySize]
+
+    const secureValue = mainContactData?.importanciaSegurada
+      ? parseFloat(
+          mainContactData.importanciaSegurada.replace(/R|\$|\.|,/g, ''),
+        )
+      : 0
+
+    const prize = (secureValue * parseInt(duration) * size) / 365 / 100
+    const finalValue = Math.max(prize, minValue)
+
+    const finalValueString = new Intl.NumberFormat('pt-BR', {
+      style: 'currency',
+      currency: 'BRL',
+    }).format(finalValue)
+
+    setResult(finalValueString)
+  }
 
   return (
     <div>
       <Header />
 
-      <main className="flex justify-between max-w-[1240px] mx-auto mb-9">
-        <figure>
+      <main className="mx-auto flex max-w-[1240px] justify-center lg:mb-9 lg:justify-between">
+        <figure className="hidden lg:block">
           <StaticImage
             src="../images/img-calculadora.svg"
             alt="Ilustração de uma mulher"
@@ -22,92 +87,100 @@ const IndexPage: React.FC<PageProps> = ({ data }) => {
         </figure>
 
         <div>
-          <div className="bg-neutral-100 rounded-lg p-10 max-w-xl drop-shadow-md">
-            <h1 className="text-center font-semibold text-3xl text-neutral-950 mb-1">
+          <div className="rounded-lg bg-neutral-100 p-10 lg:max-w-xl lg:drop-shadow-md">
+            <h1 className="mb-1 text-center text-2xl font-semibold text-neutral-950 lg:text-3xl">
               Simular seguro garantia é fácil!
             </h1>
-            <p className="max-w-sm text-center mx-auto text-neutral-800 mb-4">
+            <p className="mx-auto mb-4 max-w-sm text-center text-sm text-neutral-800 lg:text-base">
               Preencha as informações e veja o valor estimado em poucos
               segundos.
             </p>
 
-            <Card
-              text="Qual a importância segurada"
-              typeInput="text"
-              placeholder="Importância Segurada"
-              btnText="Próximo"
-            />
+            {currentStep === 1 && <Insurance onSubmit={handleNextStep} />}
+            {currentStep === 2 && <Duration onSubmit={handleNextStep} />}
+            {currentStep === 3 && <CompanySize onSubmit={handleNextStep} />}
+            {currentStep === 4 && <MainContactForm onSubmit={handleNextStep} />}
+            {currentStep === 5 && <Result result={result} />}
 
-            <span className="text-sm text-center block mt-3">
+            <span className="mt-3 block text-center text-xs lg:text-sm">
               * Esta é uma simulação, os valores do seguro são aproximados. Para
-              obter valores concetros, fale com um especialista da <strong>Granto Seguros</strong>
+              obter valores concetros, fale com um especialista da{' '}
+              <strong>Granto Seguros</strong>
             </span>
           </div>
         </div>
       </main>
 
-      <section className="bg-neutral-100 w-full max-w-full mb-9">
-        <div className="max-w-[1240px] mx-auto py-8">
-          <h2 className="text-center font-semibold text-3xl text-neutral-950">
+      <section className="w-full max-w-full bg-neutral-100 lg:mb-9">
+        <div className="mx-auto max-w-[1240px] py-8">
+          <h2 className="text-center text-2xl font-semibold text-neutral-950 lg:text-3xl">
             Como funciona a calculadora?
           </h2>
 
-          <div className="flex justify-between mt-6">
+          <div className="mt-6 flex flex-col items-center justify-center gap-8 lg:flex-row lg:justify-between">
             {advantage.map((item: any) => (
-              <div key={item.id} className="max-w-xs bg-white p-7 rounded-lg text-center drop-shadow-md">
-                <div className="bg-[#4510a3] p-3 rounded-md">
-                  <h3 className="text-lg font-bold text-white uppercase">{item.frontmatter.title}</h3>
+              <div
+                key={item.id}
+                className="max-w-xs rounded-lg bg-white p-7 text-center drop-shadow-md"
+              >
+                <div className="rounded-md bg-[#4510a3] p-3">
+                  <h3 className="text-lg font-bold uppercase text-white">
+                    {item.frontmatter.title}
+                  </h3>
                 </div>
 
-                <p className="mt-3 text-neutral-800">{item.frontmatter.description}</p>
+                <p className="mt-3 text-neutral-800">
+                  {item.frontmatter.description}
+                </p>
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      <section className="grid grid-cols-2 max-w-[1440px] mx-auto">
-        <figure className="w-full block">
+      <section className="mx-auto grid max-w-[1440px] lg:grid-cols-2">
+        <figure className="hidden w-full lg:block">
           <StaticImage
             src="../images/teste.jpg"
             alt="Imagem de duas pessoas conversando"
             layout="constrained"
-            className="h-full"  // Definindo a altura da imagem como a altura total da seção
+            className="h-full" // Definindo a altura da imagem como a altura total da seção
           />
         </figure>
 
-        <div className="bg-[#4510a3] p-10 flex flex-col justify-center">
-          <h3 className="text-white text-4xl font-bold mb-4">Entre em contato com nossos especialistas</h3>
+        <div className="flex flex-col justify-center bg-[#4510a3] p-10">
+          <h3 className="mb-4 text-2xl font-bold text-white lg:text-4xl">
+            Entre em contato com nossos especialistas
+          </h3>
           <ContactForm />
         </div>
       </section>
 
-
       <Footer />
     </div>
-  );
-};
+  )
+}
 
 export const query = graphql`
-query advantage {
-  allMarkdownRemark {
-    nodes {
-      html
-      id
-      frontmatter {
-        title
-        description
-        icon {
-          childImageSharp {
-            gatsbyImageData
+  query advantage {
+    allMarkdownRemark {
+      nodes {
+        html
+        id
+        frontmatter {
+          title
+          description
+          icon {
+            childImageSharp {
+              gatsbyImageData
+            }
           }
         }
       }
     }
   }
-}
 `
 
-export default IndexPage;
+export default IndexPage
 
-export const Head: HeadFC = () => <title>Calculadora | Granto Seguros</title>;
+export const Head: HeadFC = () => <title>Calculadora | Granto Seguros</title>
