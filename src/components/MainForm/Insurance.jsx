@@ -10,14 +10,14 @@ const Insurance = ({ onSubmit }) => {
     const formattedValue = new Intl.NumberFormat('pt-BR', {
       style: 'currency',
       currency: 'BRL',
-    }).format(numberValue / 100) // Divide por 100 para tratar centavos
+    }).format(numberValue / 100)
 
     return formattedValue
   }
 
   const handleNext = () => {
-    const formattedValue = importanciaSegurada.replace(/[^0-9]/g, '') // Remove tudo que não é dígito
-    onSubmit({ importanciaSegurada: formattedValue })
+    const formattedValue = importanciaSegurada.replace(/[^0-9]/g, '');
+    onSubmit(formattedValue);
   }
 
   return (

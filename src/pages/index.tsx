@@ -16,7 +16,7 @@ const IndexPage: React.FC<PageProps> = ({ data }) => {
   const advantage = data.allMarkdownRemark.nodes
 
   const [currentStep, setCurrentStep] = useState(1)
-  const [insuranceInfo, setInsuranceInfo] = useState({})
+  const [formattedValue, setFormattedValue] = useState('')
   const [duration, setDuration] = useState('')
   const [companySize, setCompanySize] = useState('')
   const [mainContactInfo, setMainContactInfo] = useState({})
@@ -30,7 +30,7 @@ const IndexPage: React.FC<PageProps> = ({ data }) => {
   const setFormData = (stepData) => {
     switch (currentStep) {
       case 1:
-        setInsuranceInfo(stepData)
+        setFormattedValue(stepData)
         break
       case 2:
         setDuration(stepData)
@@ -40,39 +40,36 @@ const IndexPage: React.FC<PageProps> = ({ data }) => {
         break
       case 4:
         setMainContactInfo(stepData)
-        handleCalculateResult(stepData)
+        handleCalculateResult()
         break
       default:
         break
     }
   }
 
-  const handleCalculateResult = (mainContactData) => {
+  const handleCalculateResult = () => {
     const sizeValues = {
       MEI: { size: 1, minValue: 290 },
       ME: { size: 0.8, minValue: 250 },
       Média: { size: 0.5, minValue: 190 },
       Grande: { size: 0.4, minValue: 170 },
-    }
+    };
 
-    const { size, minValue } = sizeValues[companySize]
+    console.log(formattedValue, duration, companySize)
+    const { size, minValue } = sizeValues[companySize]; // Make sure companySize is properly set
 
-    const secureValue = mainContactData?.importanciaSegurada
-      ? parseFloat(
-          mainContactData.importanciaSegurada.replace(/R|\$|\.|,/g, ''),
-        )
-      : 0
+    console.log('After', formattedValue, duration, companySize)
 
-    const prize = (secureValue * parseInt(duration) * size) / 365 / 100
-    const finalValue = Math.max(prize, minValue)
+    const prize = Math.round((formattedValue * parseInt(duration) * size / 365) / 100);
+    const finalValue = Math.max(prize, minValue);
 
     const finalValueString = new Intl.NumberFormat('pt-BR', {
       style: 'currency',
       currency: 'BRL',
-    }).format(finalValue)
+    }).format(finalValue);
 
-    setResult(finalValueString)
-  }
+    setResult(finalValueString);
+  };
 
   return (
     <div>
