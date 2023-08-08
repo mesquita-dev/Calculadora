@@ -58,17 +58,21 @@ const IndexPage: React.FC<PageProps> = ({ data }) => {
     console.log(formattedValue, duration, companySize)
     const { size, minValue } = sizeValues[companySize]; // Make sure companySize is properly set
 
-    console.log('After', formattedValue, duration, companySize)
+    const prize = (formattedValue * duration * size / 36500)
+    console.log(prize)
 
-    const prize = Math.round((formattedValue * parseInt(duration) * size / 365) / 100);
-    const finalValue = Math.max(prize, minValue);
+    const prizeAsNumber = parseFloat(prize)
 
-    const finalValueString = new Intl.NumberFormat('pt-BR', {
-      style: 'currency',
-      currency: 'BRL',
-    }).format(finalValue);
+    const finalValue = Math.max(prizeAsNumber, minValue);
 
-    setResult(finalValueString);
+    function formatNumberWithCommas(number) {
+      return number.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    }
+
+    const formattedFinalValue = `R$ ${formatNumberWithCommas(finalValue)}`;
+
+    setResult(formattedFinalValue);
+
   };
 
   return (

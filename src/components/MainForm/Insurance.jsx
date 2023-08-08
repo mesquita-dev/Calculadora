@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 
 const Insurance = ({ onSubmit }) => {
   const [importanciaSegurada, setImportanciaSegurada] = useState('')
+  const [errorMessage, setErrorMessage] = useState('')
 
   const formatCurrency = (value) => {
     if (!value) return ''
@@ -16,8 +17,12 @@ const Insurance = ({ onSubmit }) => {
   }
 
   const handleNext = () => {
-    const formattedValue = importanciaSegurada.replace(/[^0-9]/g, '');
-    onSubmit(formattedValue);
+    if (!importanciaSegurada.trim()) {
+      setErrorMessage('Por favor, preencha a importância segurada')
+    } else {
+      const formattedValue = importanciaSegurada.replace(/[^0-9]/g, '');
+      onSubmit(formattedValue);
+    }
   }
 
   return (
@@ -31,7 +36,10 @@ const Insurance = ({ onSubmit }) => {
           type="text"
           placeholder="Importância Segurada"
           value={formatCurrency(importanciaSegurada)}
-          onChange={(event) => setImportanciaSegurada(event.target.value)}
+          onChange={(event) => {
+            setImportanciaSegurada(event.target.value)
+            setErrorMessage('')
+          }}
           autoComplete="off"
           className="rounded-lg border-none p-3 outline-none"
         />
@@ -42,6 +50,9 @@ const Insurance = ({ onSubmit }) => {
           Avançar
         </button>
       </div>
+      {errorMessage && (
+         <p className="text-center text-red-500 mt-2">{errorMessage}</p>
+      )}
     </div>
   )
 }

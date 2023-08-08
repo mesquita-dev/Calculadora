@@ -2,9 +2,14 @@ import React, { useState } from 'react'
 
 const Duration = ({ onSubmit }) => {
   const [vigencia, setVigencia] = useState('')
+  const [errorMessage, setErrorMessage] = useState('')
 
   const handleNext = () => {
-    onSubmit(vigencia)
+    if (!vigencia.trim()) {
+      setErrorMessage('Digite a quantidade de dias')
+    } else {
+      onSubmit(vigencia)
+    }
   }
 
   return (
@@ -19,7 +24,10 @@ const Duration = ({ onSubmit }) => {
           type="text"
           placeholder="Vigência em dias"
           value={vigencia}
-          onChange={(event) => setVigencia(event.target.value)}
+          onChange={(event) => {
+            setVigencia(event.target.value)
+            setErrorMessage('')
+          }}
           autoComplete="off"
         />
         <button
@@ -29,6 +37,9 @@ const Duration = ({ onSubmit }) => {
           Avançar
         </button>
       </div>
+      {errorMessage && (
+        <p className='text-center text-red-500 mt-2'>{errorMessage}</p>
+      )}
     </div>
   )
 }
