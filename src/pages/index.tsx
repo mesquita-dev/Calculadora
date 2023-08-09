@@ -65,14 +65,7 @@ const IndexPage: React.FC<PageProps> = ({ data }) => {
 
     const finalValue = Math.max(prizeAsNumber, minValue);
 
-    function formatNumberWithCommas(number) {
-      return number.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-    }
-
-    const formattedFinalValue = `R$ ${formatNumberWithCommas(finalValue)}`;
-
-    setResult(formattedFinalValue);
-
+    setResult(`R$ ${finalValue}`);
   };
 
   return (
@@ -122,7 +115,7 @@ const IndexPage: React.FC<PageProps> = ({ data }) => {
             {advantage.map((item: any) => (
               <div
                 key={item.id}
-                className="max-w-xs rounded-lg bg-white p-7 text-center drop-shadow-md"
+                className="max-w-xs rounded-lg bg-white p-7 text-center drop-shadow-md h-64"
               >
                 <div className="rounded-md bg-[#4510a3] p-3">
                   <h3 className="text-lg font-bold uppercase text-white">
