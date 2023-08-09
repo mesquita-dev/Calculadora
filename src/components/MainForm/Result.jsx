@@ -10,19 +10,19 @@ const Result = ({ result, onRefazerCalculo }) => {
   }
 
   return (
-    <div className="rounded-lg bg-[#4510a3] py-6">
+    <div className="rounded-lg bg-[#4510a3] w-full p-4 lg:py-6">
       <h2 className="mb-2 text-center text-4xl font-bold text-white">
         Seu resultado <br /> {result}
       </h2>
 
-      <p className='text-center text-white mb-4'>Viu como é rápido? Receba uma proposta com a mesma velocidade deste cálculo, entre em contato.</p>
+      <p className='text-center text-white mb-4 text-xs lg:text-base'>Viu como é rápido? Receba uma proposta com a mesma velocidade deste cálculo, entre em contato.</p>
 
       <div className='flex justify-center gap-6'>
-        <button className='rounded-lg bg-neutral-300 px-4 py-3 font-bold uppercase text-neutral-600' onClick={() => window.location.reload()}>
+        <button className='rounded-lg bg-neutral-300 px-4 lg:px-4 py-3 font-bold uppercase text-neutral-600 text-sm lg:text-base' onClick={() => window.location.reload()}>
           Refazer Cálculo
         </button>
 
-        <button className='rounded-lg bg-teal-500 px-4 py-3 font-bold uppercase text-black' onClick={sendMessage}>
+        <button className='rounded-lg bg-teal-500 px-3 lg:px-4 py-3 font-bold uppercase text-neutral-600 text-sm lg:text-base' onClick={sendMessage}>
           WhatsApp
         </button>
       </div>

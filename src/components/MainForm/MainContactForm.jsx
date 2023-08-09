@@ -26,7 +26,7 @@ const MainContactForm = ({ onSubmit }) => {
   }, [])
 
   return (
-    <div className="rounded-lg bg-[#4510a3] py-6">
+    <div className="rounded-lg bg-[#4510a3] p-5 lg:py-6 lg:max-w-xl">
       <p className="mx-auto mb-2 w-96 text-center text-xl font-semibold text-white">
         Para ver seu resultado, diga-nos suas formas de contato
       </p>

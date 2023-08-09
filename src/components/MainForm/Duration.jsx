@@ -13,7 +13,7 @@ const Duration = ({ onSubmit }) => {
   }
 
   return (
-    <div className="rounded-lg bg-[#4510a3] py-6">
+    <div className="rounded-lg bg-[#4510a3] p-5 lg:py-6 lg:max-w-xl">
       <p className="mb-6 text-center text-xl text-white">
         Qual o período de vigência? (em dias)
       </p>
