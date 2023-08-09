@@ -8,12 +8,12 @@ const Insurance = ({ onSubmit }) => {
     if (!value) return ''
 
     const numberValue = parseFloat(value.replace(/[^0-9]/g, '')) || 0
-    const formattedValue = new Intl.NumberFormat('pt-BR', {
-      style: 'currency',
-      currency: 'BRL',
-    }).format(numberValue / 100)
+    const formattedValue = numberValue.toLocaleString('pt-BR', {
+      minimumFractionDigits: 0,
+      maximumFractionDigits: 0
+    })
 
-    return formattedValue
+    return `R$ ${formattedValue}`
   }
 
   const handleNext = () => {

@@ -55,8 +55,7 @@ const IndexPage: React.FC<PageProps> = ({ data }) => {
       Grande: { size: 0.4, minValue: 170 },
     };
 
-    console.log(formattedValue, duration, companySize)
-    const { size, minValue } = sizeValues[companySize]; // Make sure companySize is properly set
+    const { size, minValue } = sizeValues[companySize];
 
     const prize = (formattedValue * duration * size / 36500)
     console.log(prize)
@@ -65,7 +64,12 @@ const IndexPage: React.FC<PageProps> = ({ data }) => {
 
     const finalValue = Math.max(prizeAsNumber, minValue);
 
-    setResult(`R$ ${finalValue}`);
+    const formattedFinalValue = finalValue.toLocaleString('pt-BR', {
+      style: 'currency',
+      currency: 'BRL'
+    })
+
+    setResult(`${formattedFinalValue}`);
   };
 
   return (

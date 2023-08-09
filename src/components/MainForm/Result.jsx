@@ -18,7 +18,7 @@ const Result = ({ result, onRefazerCalculo }) => {
       <p className='text-center text-white mb-4'>Viu como é rápido? Receba uma proposta com a mesma velocidade deste cálculo, entre em contato.</p>
 
       <div className='flex justify-center gap-6'>
-        <button className='rounded-lg bg-neutral-300 px-4 py-3 font-bold uppercase text-neutral-600'>
+        <button className='rounded-lg bg-neutral-300 px-4 py-3 font-bold uppercase text-neutral-600' onClick={() => window.location.reload()}>
           Refazer Cálculo
         </button>
 

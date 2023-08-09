@@ -1,15 +1,29 @@
 import React from 'react'
+import { useEffect } from 'react'
 import { useForm } from 'react-hook-form'
 import InputMask from 'react-input-mask'
 
 const MainContactForm = ({ onSubmit }) => {
   const form = useForm()
-  const { register, handleSubmit, formState } = form
+  const { register, handleSubmit, formState, setValue } = form
   const { errors } = formState
 
   const onContactSubmit = (data) => {
+    localStorage.setItem('dadosContato', JSON.stringify(data))
     onSubmit(data)
   }
+
+  useEffect(() => {
+    const dadosSalvos = localStorage.getItem('dadosContato')
+
+    if (dadosSalvos) {
+      const dadosParse = JSON.parse(dadosSalvos)
+
+      setValue('name', dadosParse.name || '')
+      setValue('email', dadosParse.email || '')
+      setValue('phone', dadosParse.phone || '')
+    }
+  }, [])
 
   return (
     <div className="rounded-lg bg-[#4510a3] py-6">
